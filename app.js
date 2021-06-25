@@ -82,7 +82,7 @@ app.use((req, res, next) => {
     });
 })
 
-app.use('/admin', adminData.routes);
+app.use('/admin', adminData);
 app.use(shopRoutes);
 app.use(authRoutes);
 

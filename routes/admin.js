@@ -10,11 +10,10 @@ const {
   postAddProduct,
   getEditProduct,
   postEditProduct,
-  postDeleteProduct
+  // postDeleteProduct
+  deleteProduct
 } = require('../controllers/admin');
 const isAuth = require('../middleware/is-auth');
-
-const products = [];
 
 // /admin/add-product => GET
 router.get('/add-product', isAuth, getAddProduct);
@@ -58,7 +57,7 @@ router.post('/edit-product',
   ], isAuth, postEditProduct);
 
 // /admin/delete-product => POST
-router.post('/delete-product', isAuth, postDeleteProduct);
+// router.post('/delete-product', isAuth, postDeleteProduct);
+router.delete('/product/:productId', isAuth, deleteProduct);
 
-exports.routes = router;
-exports.products = products;
+module.exports = router;

@@ -165,20 +165,35 @@ exports.getProducts = (req, res, next) => {
     })
 }
 
-exports.postDeleteProduct = (req, res, next) => {
-  const productId = req.body.productId;
+// exports.postDeleteProduct = (req, res, next) => {
+//   const productId = req.body.productId;
+
+//   Product.findByPk(productId)
+//     .then(product => {
+//       return product.destroy();
+//     })
+//     .then(result => {
+//       res.redirect('/admin/products');
+//     })
+//     .catch(err => {
+//       //using express error handling middleware
+//       const error = new Error(err);
+//       error.httpStatusCode = 500;
+//       return next(error);
+//     })
+// }
+
+exports.deleteProduct = (req, res, next) => {
+  const productId = req.params.productId;
 
   Product.findByPk(productId)
     .then(product => {
       return product.destroy();
     })
     .then(result => {
-      res.redirect('/admin/products');
+      res.status(200).json({ message: "Success!" });
     })
     .catch(err => {
-      //using express error handling middleware
-      const error = new Error(err);
-      error.httpStatusCode = 500;
-      return next(error);
+      res.status(500).json({ message: 'Deleting the product failed!' });
     })
 }
